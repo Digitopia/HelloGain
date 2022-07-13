@@ -15,7 +15,14 @@ HelloJuceAudioProcessorEditor::HelloJuceAudioProcessorEditor (HelloJuceAudioProc
 {
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    setSize (200, 300);
+    
+    gainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+    gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 20);
+    gainSlider.setRange(-60.0f, 0.0f, 0.01f);
+    gainSlider.setValue(-20.0f);
+    gainSlider.addListener(this);
+    addAndMakeVisible(gainSlider);
 }
 
 HelloJuceAudioProcessorEditor::~HelloJuceAudioProcessorEditor()
@@ -25,16 +32,23 @@ HelloJuceAudioProcessorEditor::~HelloJuceAudioProcessorEditor()
 //==============================================================================
 void HelloJuceAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    
+    g.fillAll(juce::Colours::black);
+    
+    // g.setColour (juce::Colours::white);
+    // g.setFont (15.0f);
+    // g.drawFittedText ("Hello Juce!", getLocalBounds(), juce::Justification::centred, 1);
 }
 
 void HelloJuceAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    gainSlider.setBounds(getWidth() / 2 - 50, getHeight() / 2 - 75, 100, 150);
+}
+
+void HelloJuceAudioProcessorEditor::sliderValueChanged(juce::Slider *slider)
+{
+    if (slider == &gainSlider)
+    {        
+        audioProcessor.gain = gainSlider.getValue();
+    }
 }

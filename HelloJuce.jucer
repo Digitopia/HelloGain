@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <JUCERPROJECT id="v5BlXK" name="HelloJuce" projectType="audioplug" useAppConfig="0"
-              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1">
+              addUsingNamespaceToJuceHeader="0" displaySplashScreen="1" jucerFormatVersion="1"
+              companyName="Digitopia" companyWebsite="digitopia.casadamusica.com">
   <MAINGROUP id="c8gNG4" name="HelloJuce">
     <GROUP id="{4AA1F8F2-7613-02CD-8880-F8B0CCF72246}" name="Source">
       <FILE id="FDPvNc" name="PluginProcessor.cpp" compile="1" resource="0"
